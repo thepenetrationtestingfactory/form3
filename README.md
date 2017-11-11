@@ -27,5 +27,10 @@ There are four different entry points methods:
 /api/payments/update/{id}	POST	-> update the payment which id is passed as parameter with the data passed in the body of the request
 
 
+Testing:
+Apart of unit testing cases in PaymentServiceImplTest.java, there is an integration test to test the 
+REST API entry point methods: PaymentApiControllerTest.java which would need to have the embedded server Jetty running.
+
+
 
 
