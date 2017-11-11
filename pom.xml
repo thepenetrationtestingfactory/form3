@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.form3</groupId>
+	<artifactId>form3</artifactId>
+	<version>0.0.1-form3</version>
+
+	<packaging>war</packaging>
+
+
+	<name>form3</name>
+
+	<properties>
+		<buildTimestamp>${maven.build.timestamp}</buildTimestamp>
+		<maven.build.timestamp.format>yyyyMMdd_HHmm</maven.build.timestamp.format>
+		<version>${project.version}</version>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<spring.version>4.2.5.RELEASE</spring.version>
+		<javax.servlet.version>3.1.0</javax.servlet.version>
+		<gson.version>2.8.2</gson.version>
+		<nitrite.version>2.0.1</nitrite.version>
+		<slf4j.version>1.7.12</slf4j.version>
+		<logback.version>1.1.3</logback.version>
+
+		<junit.version>4.12</junit.version>
+		<hamcrest.version>1.3</hamcrest.version>
+		<rest.assured.version>2.9.0</rest.assured.version>
+		<javax.validation.version>2.0.0.Final</javax.validation.version>
+	</properties>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>ROOT</warName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>8.1.16.v20140903</version>
+
+				<configuration>
+					<webApp>
+						<contextPath>/</contextPath>
+						<resourceBase>${project.basedir}/src/main/webapp</resourceBase>
+					</webApp>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>8090</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+					<scanIntervalSeconds>0</scanIntervalSeconds>
+					<stopKey>foo</stopKey>
+					<stopPort>9998</stopPort>
+					<contextPath>/</contextPath>
+
+					<jvmArgs>-Djetty.port=8090 -Xms128m -Xmx1024m -Xdebug
+						-Xrunjdwp:transport=dt_socket,address=8585,server=y,suspend=n</jvmArgs>
+
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<finalName>ROOT</finalName>
+	</build>
+
+
+	<dependencies>
+
+		<!-- Logging Framework -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.3</version>
+		</dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet.version}</version>
+		</dependency>
+
+		<!-- Spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Spring tx -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Validation -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${javax.validation.version}</version>
+		</dependency>
+
+		<!-- gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+
+		<!-- NOSQL DB -->
+		<dependency>
+			<groupId>org.dizitart</groupId>
+			<artifactId>nitrite</artifactId>
+			<version>${nitrite.version}</version>
+		</dependency>
+
+	</dependencies>
+
+
+</project>
+  
